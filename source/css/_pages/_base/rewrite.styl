@@ -1,10 +1,9 @@
 // Rewrite navbar
 .navbar
-  will-change background, padding, box-shadow
   background-color transparent
   font-size 0.875rem
-  box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
-  -webkit-box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+  box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0), 0 2px 10px 0 rgba(0, 0, 0, 0)
+  -webkit-box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0), 0 2px 10px 0 rgba(0, 0, 0, 0)
 
   .navbar-brand
     color var(--navbar-text-color)
@@ -29,10 +28,9 @@
     outline 0
 
   &.scrolling-navbar
+    will-change background, padding, box-shadow
     -webkit-transition background 0.5s ease-in-out, padding 0.5s ease-in-out
     transition background 0.5s ease-in-out, padding 0.5s ease-in-out
-    box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0), 0 2px 10px 0 rgba(0, 0, 0, 0)
-    -webkit-box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0), 0 2px 10px 0 rgba(0, 0, 0, 0)
 
     @media (min-width: 600px)
       &
@@ -46,6 +44,8 @@
     &.top-nav-collapse
       padding-top 5px
       padding-bottom 5px
+    &.top-nav-collapse,
+    &.navbar-col-show
       box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
       -webkit-box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
 
