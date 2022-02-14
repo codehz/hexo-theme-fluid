@@ -37,6 +37,9 @@ var ogConfig = Object.assign({ image: ogImage && url_for(ogImage) }, theme.open_
 
   <%- partial('_partial/css.ejs') %>
   <%- export_config() %>
+  <% if (is_home()) { %>
+    <%- js_ex(theme.static_prefix.internal_js, 'waterfall.js') %>
+  <% } %>
   <%- js_ex(theme.static_prefix.internal_js, 'utils.js') %>
   <%- js_ex(theme.static_prefix.internal_js, 'color-schema.js') %>
 </head>
