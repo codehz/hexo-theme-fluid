@@ -5,7 +5,7 @@ customElements.define(
   "water-fall",
   class extends HTMLElement {
     observer = new ResizeObserver(
-      (entry) => this.updateWidth(entry[0].contentBoxSize[0].inlineSize)
+      () => this.updateWidth(this.offsetWidth - 30)
     );
     constructor() {
       super();
@@ -22,6 +22,7 @@ customElements.define(
       this.lastWidth = width;
       this.column = (width / MIN_WIDTH) | 0;
       const columnWidth = (width - PADDING * (this.column - 1)) / this.column;
+      this.classList.toggle("multi-column", this.column > 1);
       this.style.setProperty("--card-width", `${columnWidth}px`);
       this.style.setProperty(
         "--card-width-padding",
@@ -63,7 +64,7 @@ customElements.define(
   "index-card",
   class extends HTMLElement {
     observer = new ResizeObserver(
-      (entry) => (this.height = entry[0].contentBoxSize[0].blockSize)
+      () => (this.height = this.offsetHeight)
     );
 
     constructor() {

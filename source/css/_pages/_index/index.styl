@@ -10,17 +10,35 @@ index-card
   display block
   &:defined
     position absolute
-    &:not(:first-of-type)
-      width var(--card-width, 100%)
-      transform translate(calc(var(--column, 0) * var(--card-width-padding, 0)), var(--offset-y, 0))
-      transition transform ease 1s
-    &:first-of-type
-      width 100%
-      display flex
-      gap 20px
 
-      .index-img
-        max-width 40%
+water-fall-card()
+  width var(--card-width, 100%)
+  transform translate(calc(var(--column, 0) * var(--card-width-padding, 0)), var(--offset-y, 0))
+  transition transform ease 1s
+
+water-fall
+  &:not(.multi-column)
+    index-card:defined
+      water-fall-card()
+
+  &.multi-column
+    index-card:defined
+      &:not(:first-of-type)
+        water-fall-card()
+      &:first-of-type
+        width calc(100% - 30px)
+        padding-bottom 20px
+        &::after
+          position absolute
+          display block
+          content ""
+          left 20px
+          right 20px
+          bottom 0
+          height 1px
+          background var(--text-color)
+        .index-img img
+          max-height unset
 
 .index-img
   img
