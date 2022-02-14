@@ -56,6 +56,8 @@ customElements.define(
         }
       }
       this.style.height = height + "px";
+
+      this.classList.toggle("updated", true);
     }
   }
 );
