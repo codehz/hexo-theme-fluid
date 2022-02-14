@@ -31,7 +31,7 @@ customElements.define(
         "--card-width-padding",
         `${columnWidth + PADDING}px`
       );
-      updateLayout();
+      this.updateLayout();
     }
 
     updateLayout() {
@@ -43,13 +43,20 @@ customElements.define(
     }
 
     deferredUpdateLayout() {
-      const arr = [...Array(this.column)].map((x) => 0);
+      const arr = [...Array(this.column)];
       let height = 0;
+      let first = true;
       for (const card of this.querySelectorAll("index-card")) {
-        const idx = arr.reduce((r, v, i, a) => (v > a[r] ? r : i), -1);
-        card.style.setProperty("--column", idx + "");
-        card.style.setProperty("--offset-y", arr[idx] + "px");
-        height = arr[idx] += card.height + PADDING;
+        if (first) {
+          first = false;
+          height = card.height + PADDING;
+          arr.fill(height);
+        } else {
+          const idx = arr.reduce((r, v, i, a) => (v >= a[r] ? r : i), -1);
+          card.style.setProperty("--column", idx + "");
+          card.style.setProperty("--offset-y", arr[idx] + "px");
+          height = arr[idx] += card.height + PADDING;
+        }
       }
       this.style.height = height + "px";
     }
