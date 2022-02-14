@@ -5,11 +5,7 @@ customElements.define(
   "water-fall",
   class extends HTMLElement {
     observer = new ResizeObserver(
-      ([
-        {
-          contentBoxSize: [{ inlineSize: width }],
-        },
-      ]) => this.updateWidth(width)
+      (entry) => this.updateWidth(entry[0].contentBoxSize[0].inlineSize)
     );
     constructor() {
       super();
@@ -67,11 +63,7 @@ customElements.define(
   "index-card",
   class extends HTMLElement {
     observer = new ResizeObserver(
-      ([
-        {
-          borderBoxSize: [{ blockSize: height }],
-        },
-      ]) => (this.height = height)
+      (entry) => (this.height = entry[0].contentBoxSize[0].blockSize)
     );
 
     constructor() {
